@@ -8,7 +8,7 @@ case "$ARCH" in
 esac
 INSTALL_BIN="${ROYCO_INSTALL_BIN:-$HOME/.local/royco/bin}"
 LAUNCHER_BIN="${ROYCO_LAUNCHER_BIN:-$HOME/.local/bin}"
-SERVER_ADDR="${ROYCO_SERVER_ADDR:-100.59.208.143:7767}"
+SERVER_ADDR="${ROYCO_SERVER_ADDR:-174.129.60.2:7767}"
 mkdir -p "$INSTALL_BIN" "$LAUNCHER_BIN"
 install -m 0755 "$ROOT/bin/$PLATFORM/royco-tui" "$INSTALL_BIN/royco-tui"
 rm -f "$INSTALL_BIN/royco-server" "$INSTALL_BIN/royco"

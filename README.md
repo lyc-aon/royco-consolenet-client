@@ -20,7 +20,7 @@ royco login
 
 The first launch opens X login. Your chat name is your X handle.
 
-Default server: `100.59.208.143:7767`.
+Default server: `174.129.60.2:7767`.
 Override if needed:
 
 ```bash
