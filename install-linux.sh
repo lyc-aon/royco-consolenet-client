@@ -27,8 +27,17 @@ chmod 0755 "$LAUNCHER_BIN/royco-consolenet"
 cat > "$LAUNCHER_BIN/royco" <<LAUNCHER
 #!/usr/bin/env bash
 set -euo pipefail
-case "\${1:-}" in
-  login|'') shift || true; exec "$LAUNCHER_BIN/royco-consolenet" "\$@" ;;
+usage() {
+  echo "Usage: royco login"
+  echo "Launches roycorp™ Consolenet against $SERVER_ADDR and opens X login."
+}
+case "\${1:-login}" in
+  login)
+    shift || true
+    case "\${1:-}" in --help|-h|help) usage; exit 0 ;; esac
+    exec "$LAUNCHER_BIN/royco-consolenet" "\$@"
+    ;;
+  --help|-h|help) usage ;;
   *) echo "royco public client supports: royco login" >&2; exit 2 ;;
 esac
 LAUNCHER

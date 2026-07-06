@@ -24,6 +24,15 @@ royco login
 
 The first launch opens X login. Your chat name is your X handle.
 
+If the X handle is not approved yet, login records the request and exits with a
+pending-approval message. A Royco admin can approve it in the console with:
+
+```text
+/x permit @handle
+```
+
+Admins can review pending handles in the Admin pane.
+
 Default server: `174.129.60.2:7767`.
 Override if needed:
 
