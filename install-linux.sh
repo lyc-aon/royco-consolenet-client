@@ -15,6 +15,7 @@ rm -f "$INSTALL_BIN/royco-server" "$INSTALL_BIN/royco"
 cat > "$LAUNCHER_BIN/royco-consolenet" <<LAUNCHER
 #!/usr/bin/env bash
 set -euo pipefail
+# Generated launcher opens the live chat UI, not a one-shot snapshot.
 ROYCO_BIN="\${ROYCO_BIN:-$INSTALL_BIN}"
 SERVER_ADDR="\${ROYCO_SERVER_ADDR:-$SERVER_ADDR}"
 STATE_HOME="\${XDG_STATE_HOME:-\$HOME/.local/state}"
