@@ -8,7 +8,7 @@ case "$ARCH" in
 esac
 INSTALL_BIN="${ROYCO_INSTALL_BIN:-$HOME/.local/royco/bin}"
 LAUNCHER_BIN="${ROYCO_LAUNCHER_BIN:-$HOME/.local/bin}"
-SERVER_ADDR="${ROYCO_SERVER_ADDR:-174.129.60.2:7767}"
+SERVER_URL="${ROYCO_SERVER_URL:-wss://d12vjvobixtkef.cloudfront.net/royco}"
 mkdir -p "$INSTALL_BIN" "$LAUNCHER_BIN"
 install -m 0755 "$ROOT/bin/$PLATFORM/royco-tui" "$INSTALL_BIN/royco-tui"
 rm -f "$INSTALL_BIN/royco-server" "$INSTALL_BIN/royco"
@@ -17,11 +17,14 @@ cat > "$LAUNCHER_BIN/royco-consolenet" <<LAUNCHER
 set -euo pipefail
 # Generated launcher opens the live chat UI, not a one-shot snapshot.
 ROYCO_BIN="\${ROYCO_BIN:-$INSTALL_BIN}"
-SERVER_ADDR="\${ROYCO_SERVER_ADDR:-$SERVER_ADDR}"
+SERVER_URL="\${ROYCO_SERVER_URL:-$SERVER_URL}"
 STATE_HOME="\${XDG_STATE_HOME:-\$HOME/.local/state}"
 mkdir -p "\$STATE_HOME/royco"
 SESSION_PATH="\${ROYCO_SESSION_PATH:-\$STATE_HOME/royco/consolenet-session.json}"
-exec "\$ROYCO_BIN/royco-tui" --interactive --x-login --server-addr "\$SERVER_ADDR" --session-path "\$SESSION_PATH" "\$@"
+if [[ -n "\${ROYCO_SERVER_ADDR:-}" ]]; then
+  exec "\$ROYCO_BIN/royco-tui" --interactive --x-login --server-addr "\$ROYCO_SERVER_ADDR" --session-path "\$SESSION_PATH" "\$@"
+fi
+exec "\$ROYCO_BIN/royco-tui" --interactive --x-login --server-url "\$SERVER_URL" --session-path "\$SESSION_PATH" "\$@"
 LAUNCHER
 chmod 0755 "$LAUNCHER_BIN/royco-consolenet"
 cat > "$LAUNCHER_BIN/royco" <<LAUNCHER
@@ -29,7 +32,7 @@ cat > "$LAUNCHER_BIN/royco" <<LAUNCHER
 set -euo pipefail
 usage() {
   echo "Usage: royco login"
-  echo "Launches roycorp™ Consolenet against $SERVER_ADDR and opens X login."
+  echo "Launches roycorp™ Consolenet against $SERVER_URL and opens X login."
 }
 case "\${1:-login}" in
   login)

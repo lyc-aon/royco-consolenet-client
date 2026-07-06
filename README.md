@@ -4,9 +4,9 @@ Client-only download for roycorp™ Consolenet.
 
 This repo intentionally contains only the TUI client binary plus tiny launcher scripts. It does not contain `royco-server` or server source.
 
-Transport note: the current Royco server protocol is raw TCP, not TLS. The AWS
-demo server is IP-allowlisted while TLS is pending; do not treat this as a
-secure public service yet.
+Transport note: the public client uses WSS through the AWS CloudFront endpoint
+below. The older raw TCP server port remains locked down and is not the public
+client path.
 
 ## Linux
 
@@ -35,8 +35,14 @@ pending-approval message. A Royco admin can approve it in the console with:
 
 Admins can review pending handles in the Admin pane.
 
-Default server: `174.129.60.2:7767`.
+Default endpoint: `wss://d12vjvobixtkef.cloudfront.net/royco`.
 Override if needed:
+
+```bash
+ROYCO_SERVER_URL=wss://host/path $HOME/.local/bin/royco login
+```
+
+Legacy raw TCP override for local testing:
 
 ```bash
 ROYCO_SERVER_ADDR=host:port $HOME/.local/bin/royco login
