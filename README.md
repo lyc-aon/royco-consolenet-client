@@ -8,6 +8,13 @@ Transport note: the public client uses WSS through the AWS CloudFront endpoint
 below. The older raw TCP server port remains locked down and is not the public
 client path.
 
+## Source & audit
+
+Full source (royco-server + royco-tui, one Rust workspace) is public so anyone
+can verify the build and check it's safe:
+
+- Source: https://github.com/lyc-aon/royco-consolenet
+
 ## Linux
 
 ```bash
