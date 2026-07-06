@@ -12,15 +12,17 @@ secure public service yet.
 
 ```bash
 ./install-linux.sh
-royco login
+$HOME/.local/bin/royco login
 ```
 
 ## macOS Apple Silicon
 
 ```bash
 sh install-macos.sh
-royco login
+$HOME/.local/bin/royco login
 ```
+
+If `$HOME/.local/bin` is already on your `PATH`, bare `royco login` works too.
 
 The first launch opens X login. Your chat name is your X handle.
 
@@ -37,5 +39,5 @@ Default server: `174.129.60.2:7767`.
 Override if needed:
 
 ```bash
-ROYCO_SERVER_ADDR=host:port royco login
+ROYCO_SERVER_ADDR=host:port $HOME/.local/bin/royco login
 ```
