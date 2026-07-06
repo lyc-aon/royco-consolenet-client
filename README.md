@@ -4,6 +4,10 @@ Client-only download for roycorp™ Consolenet.
 
 This repo intentionally contains only the TUI client binary plus tiny launcher scripts. It does not contain `royco-server` or server source.
 
+Transport note: the current Royco server protocol is raw TCP, not TLS. The AWS
+demo server is IP-allowlisted while TLS is pending; do not treat this as a
+secure public service yet.
+
 ## Linux
 
 ```bash
