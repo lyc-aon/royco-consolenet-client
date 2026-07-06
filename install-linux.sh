@@ -17,7 +17,10 @@ cat > "$LAUNCHER_BIN/royco-consolenet" <<LAUNCHER
 set -euo pipefail
 ROYCO_BIN="\${ROYCO_BIN:-$INSTALL_BIN}"
 SERVER_ADDR="\${ROYCO_SERVER_ADDR:-$SERVER_ADDR}"
-exec "\$ROYCO_BIN/royco-tui" --x-login --server-addr "\$SERVER_ADDR" "\$@"
+STATE_HOME="\${XDG_STATE_HOME:-\$HOME/.local/state}"
+mkdir -p "\$STATE_HOME/royco"
+SESSION_PATH="\${ROYCO_SESSION_PATH:-\$STATE_HOME/royco/consolenet-session.json}"
+exec "\$ROYCO_BIN/royco-tui" --interactive --x-login --server-addr "\$SERVER_ADDR" --session-path "\$SESSION_PATH" "\$@"
 LAUNCHER
 chmod 0755 "$LAUNCHER_BIN/royco-consolenet"
 cat > "$LAUNCHER_BIN/royco" <<LAUNCHER
